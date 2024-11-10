@@ -1,14 +1,22 @@
-CC = g++
-CFLAGS = -Wall -g
-TARGET = daytime
+.PHONY: all debug release clean
 
-all: $(TARGET)
+RELEASE_FLAGS = -O2 -Wall -DNDEBUG
+DEBUG_FLAGS   = -g -O0 -Wall
+RELEASE_EXEC  = daytime
+DEBUG_EXEC    = daytime-dbg
+SOURCE        = daytime.cpp
 
-$(TARGET): daytime.o
-	$(CC) -o $(TARGET) daytime.o
+all: debug release
 
-daytime.o: daytime.cpp
-	$(CC) $(CFLAGS) -c daytime.cpp
+debug: $(DEBUG_EXEC)
+
+$(DEBUG_EXEC): daytime.cpp
+	g++ $(DEBUG_FLAGS) daytime.cpp -o $(DEBUG_EXEC) 
+
+release: $(RELEASE_EXEC)
+
+$(RELEASE_EXEC): daytime.cpp
+	g++ $(RELEASE_FLAGS) daytime.cpp -o $(RELEASE_EXEC)
 
 clean:
-	rm -f $(TARGET) *.o
+	rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)

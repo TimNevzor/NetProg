@@ -1,18 +1,4 @@
-calc
-calc-dbg
-# Промежуточные файлы
-*.o
-*.obj
-*.tmp
-*.temp
-
-# Объектные файлы
-*.class
-*.dll
-*.so
-*.a
-
-# Временные файлы
-*.log
-*.bak
-*.swp
+daytime
+daytime-dbg
+serv
+serv-dbg
