@@ -5,7 +5,7 @@
 using namespace std;
 int main()
 {
-    char msg[] = "Good morning, mr sir\n"; //сообщение, к-ое отправится пользователю
+    char msg[] = "Доброго времени суток!\n"; //сообщение, к-ое отправится пользователю
     struct sockaddr_in addr; //настройка структуры
     addr.sin_family = AF_INET;
     addr.sin_port = htons(3306);
@@ -21,7 +21,7 @@ int main()
         close(s); 
         return 1;
     }
-    cout << "We send: " << msg; //выводит сообщение
+    cout << "Отправлено: " << msg; //выводит сообщение
     char buf[256]; //получает ответ от сервера
     socklen_t addr_len = sizeof(addr);
     ssize_t recv_len = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*)&addr, &addr_len);
@@ -31,7 +31,7 @@ int main()
         return 1;
     }
     buf[recv_len] = '\0';
-    cout << "We receive: " << buf; //выводит ответ
+    cout << "Получено: " << buf; //выводит ответ
     close(s); //закрывает сокет
     return 0;
 }
